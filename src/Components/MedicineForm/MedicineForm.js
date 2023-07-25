@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import Button from "../UI/Button/Button";
+import CartContext from "../../store/cart-context";
 
 const MedicineForm = (props) => {
   const [enteredMedicineName, setEnteredMedicineName] = useState("");
   const [enteredMedicineDescription, setEnteredMedicineDescription] =
     useState("");
-  const [enteredMedcinePrice, setEnteredMedicinePrice] = useState("");
+  const [enteredMedicinePrice, setEnteredMedicinePrice] = useState();
   const [
     enteredMedicineAvailableQuantity,
     setEnteredMedicineAvailableQuantity,
   ] = useState("");
 
-  const medincineNameChangeHandler = (event) => {
+  const medicineNameChangeHandler = (event) => {
     setEnteredMedicineName(event.target.value);
   };
 
-  const medincineDescriptionChangeHandler = (event) => {
+  const medicineDescriptionChangeHandler = (event) => {
     setEnteredMedicineDescription(event.target.value);
   };
 
-  const medincinePriceChangeHandler = (event) => {
+  const medicinePriceChangeHandler = (event) => {
     setEnteredMedicinePrice(event.target.value);
   };
 
-  const medincineAvailableQuantityChangeHandler = (event) => {
+  const medicineAvailableQuantityChangeHandler = (event) => {
     setEnteredMedicineAvailableQuantity(event.target.value);
   };
 
@@ -33,7 +34,7 @@ const MedicineForm = (props) => {
       medicineId: enteredMedicineName,
       name: enteredMedicineName,
       description: enteredMedicineDescription,
-      price: enteredMedcinePrice,
+      price: enteredMedicinePrice,
       availableQuantity: enteredMedicineAvailableQuantity,
     };
     localStorage.setItem(enteredMedicineName, JSON.stringify(medicineData));
@@ -51,22 +52,22 @@ const MedicineForm = (props) => {
           id="medicinename"
           type="text"
           value={enteredMedicineName}
-          onChange={medincineNameChangeHandler}
+          onChange={medicineNameChangeHandler}
         ></input>
         <label htmlFor="description">Description</label>
         <input
           id="description"
           type="text"
           value={enteredMedicineDescription}
-          onChange={medincineDescriptionChangeHandler}
+          onChange={medicineDescriptionChangeHandler}
         ></input>
         <label htmlFor="price">Price</label>
         <input
           id="price"
           type="number"
           min="1"
-          value={enteredMedcinePrice}
-          onChange={medincinePriceChangeHandler}
+          value={enteredMedicinePrice}
+          onChange={medicinePriceChangeHandler}
         ></input>
         <label htmlFor="quantityavailable">Quantity Available</label>
         <input
@@ -74,7 +75,7 @@ const MedicineForm = (props) => {
           type="number"
           min="1"
           value={enteredMedicineAvailableQuantity}
-          onChange={medincineAvailableQuantityChangeHandler}
+          onChange={medicineAvailableQuantityChangeHandler}
         ></input>
         <Button type="submit">Add Product</Button>
       </form>

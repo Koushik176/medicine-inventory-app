@@ -1,20 +1,19 @@
 import React from "react";
 import MedicineItemForm from "./MedicineItemForm";
 
-const MedicineItem = (props) => {
+const MedicinesItem = (props) => {
+  const price = `Rs. ${Number(props.price).toFixed(2)}`;
   return (
     <li>
       <div>
         <h4>{props.name}</h4>
-        <div>
-          {props.description}
-          {props.price}
-          {props.availableQuantity}
-        </div>
-        <MedicineItemForm id={props.id} medicine={props}/>
+        <div>{props.description}</div>
+        <div>{price}</div>
+        <div>{props.availableQuantity}</div>
+        <MedicineItemForm medicineId={props.id} medicine={props} />
       </div>
     </li>
   );
 };
 
-export default MedicineItem;
+export default MedicinesItem;

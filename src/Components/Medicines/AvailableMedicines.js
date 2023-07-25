@@ -1,9 +1,9 @@
 import React from "react";
-import MedicineItem from "./MedicinesItem/MedicinesItem";
+import MedicinesItem from "./MedicinesItem/MedicinesItem";
 
 const AvailableMedicines = (props) => {
   const medicinesList = props.medicines.map((medicine) => (
-    <MedicineItem
+    <MedicinesItem
       key={medicine.medicineId}
       id={medicine.medicineId}
       name={medicine.name}

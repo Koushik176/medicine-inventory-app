@@ -7,9 +7,16 @@ import Button from "../UI/Button/Button";
 const Cart = (props) => {
     const cartCtx = useContext(CartContext);
 
-    const cartItemRemoveHandler = (item) => {};
+    const totalAmount = `Rs. ${cartCtx.totalAmount.toFixed(2)}`;
 
-    const cartItemAddHandler = (item) => {};
+    const cartItemRemoveHandler = (item) => {
+        cartCtx.removeMedicine(item);
+    };
+
+    const cartItemAddHandler = (item) => {
+        cartCtx.addMedicine({...item, quantity: 1});
+        cartCtx.updateTotalAmount(item.price);
+    };
 
     const cartItems = (
         <ul>
@@ -17,9 +24,10 @@ const Cart = (props) => {
                 <CartItem
                 key={medicine.medicineId}
                 name={medicine.name}
-                description={medicine.description}
+                amount={medicine.quantity}
                 price={medicine.price}
-                availableQuantity={medicine.availableQuantity}
+                onRemove={cartItemRemoveHandler.bind(null, medicine)}
+                onAdd={cartItemAddHandler.bind(null, medicine)}
                 />
             ))}
         </ul>
@@ -28,11 +36,11 @@ const Cart = (props) => {
     return <Modal onClose={props.onClose}>
         {cartItems}
         <div>
-            <span>Total Amount</span>
-            <span>250.0</span>
+            <span>Total Amount  </span>
+            <span>{totalAmount}</span>
         </div>
         <div>
-            <Button>Close</Button>
+            <Button onClick={props.onClose}>Close</Button>
             <Button>Order</Button>
         </div>
     </Modal>

@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../UI/Button/Button";
 
 const CartItem = (props) => {
-    const price = `$${props.price.toFixed(2)}`;
+    const price = `Rs. ${Number(props.price).toFixed(2)}`;
 
     return <li>
         <div>
@@ -11,8 +11,8 @@ const CartItem = (props) => {
             <span>x{props.amount}</span>
         </div>
         <div>
-            <Button>-</Button>
-            <Button>+</Button>
+            <Button onClick={props.onRemove}>-</Button>
+            <Button onClick={props.onAdd}>+</Button>
         </div>
     </li>
 };

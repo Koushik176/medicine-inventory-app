@@ -8,9 +8,9 @@ const HeaderCartButton = (props) => {
     cartCtx.medicines.forEach((medicine) => {
         quantity = quantity + Number(medicine.quantity);
     });
-    return <button>
+    return <button onClick={props.onClick}>
         <span>Cart</span>
-        <span>{quantity}</span>
+        <span>({quantity})</span>
     </button>
 };
 
