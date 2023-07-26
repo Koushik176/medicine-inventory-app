@@ -15,7 +15,7 @@ const Cart = (props) => {
 
     const cartItemAddHandler = (item) => {
         cartCtx.addMedicine({...item, quantity: 1});
-        cartCtx.updateTotalAmount(item.price);
+        cartCtx.updateTotalAmount(Number(item.price));
     };
 
     const cartItems = (

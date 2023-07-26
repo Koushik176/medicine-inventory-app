@@ -31,7 +31,7 @@ const CartProvider = (props) => {
     });
   };
 
-  const removeMedicineFromCart = (medicine) => {
+  const removeMedicineFromCartHandler = (medicine) => {
     updateTotalAmount((prevTotalAmount) => {
       return prevTotalAmount - medicine.price;
     });
@@ -71,7 +71,7 @@ const CartProvider = (props) => {
     totalAmount: totalAmount,
     updateTotalAmount: totalAmountUpdateHandler,
     addMedicine: addMedicineToCartHandler,
-    removeMedicine: removeMedicineFromCart,
+    removeMedicine: removeMedicineFromCartHandler,
   };
   return (
     <CartContext.Provider value={cartContext}>

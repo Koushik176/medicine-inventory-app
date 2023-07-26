@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext , useState } from "react";
 import Button from "../UI/Button/Button";
-import CartContext from "../../store/cart-context";
+//import QuantityContext from "../../store/quantity-context";
 
 const MedicineForm = (props) => {
+  //const quantityCtx = useContext(QuantityContext);
   const [enteredMedicineName, setEnteredMedicineName] = useState("");
   const [enteredMedicineDescription, setEnteredMedicineDescription] =
     useState("");
-  const [enteredMedicinePrice, setEnteredMedicinePrice] = useState();
+  const [enteredMedicinePrice, setEnteredMedicinePrice] = useState("");
   const [
     enteredMedicineAvailableQuantity,
     setEnteredMedicineAvailableQuantity,
@@ -39,6 +40,8 @@ const MedicineForm = (props) => {
     };
     localStorage.setItem(enteredMedicineName, JSON.stringify(medicineData));
     props.onAddMedicine(medicineData);
+    //quantityCtx.addMedicine({...medicineData});
+    //console.log(quantityCtx.medicines);
     setEnteredMedicineName("");
     setEnteredMedicineDescription("");
     setEnteredMedicinePrice("");
