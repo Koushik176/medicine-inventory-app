@@ -3,19 +3,23 @@ import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
 import Modal from "../UI/Modal";
 import Button from "../UI/Button/Button";
+import QuantityContext from "../../store/quantity-context";
 
 const Cart = (props) => {
     const cartCtx = useContext(CartContext);
+    const quantityCtx = useContext(QuantityContext);
 
     const totalAmount = `Rs. ${cartCtx.totalAmount.toFixed(2)}`;
 
     const cartItemRemoveHandler = (item) => {
         cartCtx.removeMedicine(item);
+        quantityCtx.addMedicine({...item, quantity: 1});
     };
 
     const cartItemAddHandler = (item) => {
         cartCtx.addMedicine({...item, quantity: 1});
         cartCtx.updateTotalAmount(Number(item.price));
+        quantityCtx.removeMedicine(item);
     };
 
     const cartItems = (

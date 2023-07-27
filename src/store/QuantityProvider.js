@@ -6,7 +6,26 @@ const QuantityProvider = (props) => {
 
   const addMedicineToListHandler = (medicine) => {
     updateMedicines((prevMedicines) => {
-      return [medicine, ...prevMedicines];
+      const existingMedicineIndex = prevMedicines.findIndex(
+        (prevMedicine) => prevMedicine.medicineId === medicine.medicineId
+      );
+
+      const existingListMedicine = prevMedicines[existingMedicineIndex];
+
+      let updatedMedicine;
+      let updatedMedicines;
+
+      if (existingListMedicine) {
+        updatedMedicine = {
+          ...existingListMedicine,
+          availableQuantity: Number(existingListMedicine.availableQuantity) + 1,
+        };
+        updatedMedicines = [...prevMedicines];
+        updatedMedicines[existingMedicineIndex] = updatedMedicine;
+        return updatedMedicines;
+      } else {
+        return [medicine, ...prevMedicines];
+      }
     });
   };
 
