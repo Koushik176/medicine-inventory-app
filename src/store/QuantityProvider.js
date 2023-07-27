@@ -39,16 +39,19 @@ const QuantityProvider = (props) => {
 
       let updatedMedicines;
 
-      if (existingListMedicine.availableQuantity === 1) {
-        updatedMedicines = prevMedicines.filter(
-          (filterMedicines) =>
-            filterMedicines.medicineId !== existingListMedicine.medicineId
-        );
+      if (existingListMedicine.availableQuantity <= 0) {
+        const updatedMedicine = {
+            ...existingListMedicine,
+            availableQuantity: 0,
+        };
+        updatedMedicines = [...prevMedicines];
+        updatedMedicines[existingMedicineIndex] = updatedMedicine;
+        alert("No Stock");
         return updatedMedicines;
       } else {
         const updatedMedicine = {
           ...existingListMedicine,
-          availableQuantity: existingListMedicine.availableQuantity - 1,
+          availableQuantity: existingListMedicine.availableQuantity - medicine.quantity,
         };
         updatedMedicines = [...prevMedicines];
         updatedMedicines[existingMedicineIndex] = updatedMedicine;

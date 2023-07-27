@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Input from "../../UI/Input";
 import Button from "../../UI/Button/Button";
 import CartContext from "../../../store/cart-context";
@@ -7,6 +7,7 @@ import QuantityContext from "../../../store/quantity-context";
 const MedicineItemForm = (props) => {
   const cartCtx = useContext(CartContext);
   const quantityCtx = useContext(QuantityContext);
+  const [buttonDisable, setButtonDisable] = useState(false);
 
   const addMedicineToCart = (event) => {
     event.preventDefault();
@@ -18,7 +19,18 @@ const MedicineItemForm = (props) => {
     });
     const cartPrice = props.medicine.price * quantity;
     cartCtx.updateTotalAmount(cartPrice);
-    quantityCtx.removeMedicine({...props.medicine, medicineId: props.medicineId});
+    quantityCtx.removeMedicine({
+      ...props.medicine,
+      quantity: quantity,
+      medicineId: props.medicineId,
+    });
+    const existingMedicineIndex = quantityCtx.medicines.findIndex(
+      (medicine) => props.medicineId === medicine.medicineId
+    );
+    const existingListMedicine = quantityCtx.medicines[existingMedicineIndex];
+    if(existingListMedicine.availableQuantity <= 1) {
+      setButtonDisable(true);
+    }
   };
   return (
     <form>
@@ -32,7 +44,7 @@ const MedicineItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <Button onClick={addMedicineToCart}>Add to Cart</Button>
+      {!buttonDisable && <Button onClick={addMedicineToCart}>Add to Cart</Button>}
     </form>
   );
 };
