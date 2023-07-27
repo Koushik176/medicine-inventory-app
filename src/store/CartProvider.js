@@ -51,8 +51,11 @@ const CartProvider = (props) => {
             filterMedicine.medicineId !== existingCartMedicine.medicineId
         );
         return updatedMedicines;
-      }else {
-        const updatedMedicine = {...existingCartMedicine, quantity: existingCartMedicine.quantity - 1};
+      } else {
+        const updatedMedicine = {
+          ...existingCartMedicine,
+          quantity: existingCartMedicine.quantity - 1,
+        };
         updatedMedicines = [...prevMedicines];
         updatedMedicines[existingMedicineIndex] = updatedMedicine;
         return updatedMedicines;

@@ -3,7 +3,7 @@ import AvailableMedicines from "./AvailableMedicines";
 
 const Medicines = (props) => {
     return <Fragment>
-        <AvailableMedicines medicines={props.medicines}/>
+        <AvailableMedicines /> {/*medicines={props.medicines}*/}
     </Fragment>
 };
 

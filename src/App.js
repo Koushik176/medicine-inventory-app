@@ -6,33 +6,34 @@ import Medicines from "./Components/Medicines/Medicines";
 import { useState } from "react";
 import CartProvider from "./store/CartProvider";
 import Cart from "./Components/Cart/Cart";
+import QuantityProvider from "./store/QuantityProvider";
 
-const DUMMY_MEDICINES = [
-  {
-    medicineId: "m1",
-    name: "Dolo 650",
-    description: "given to patients who has fever",
-    price: 10.0,
-    availableQuantity: 20,
-  },
-  {
-    medicineId: "m2",
-    name: "Paracetamol 500",
-    description: "given to patients who has fever",
-    price: 20.0,
-    availableQuantity: 30,
-  },
-];
+// const MEDICINES = [
+//   // {
+//   //   medicineId: "m1",
+//   //   name: "Dolo 650",
+//   //   description: "given to patients who has fever",
+//   //   price: 10.0,
+//   //   availableQuantity: 20,
+//   // },
+//   // {
+//   //   medicineId: "m2",
+//   //   name: "Paracetamol 500",
+//   //   description: "given to patients who has fever",
+//   //   price: 20.0,
+//   //   availableQuantity: 30,
+//   // },
+// ];
 
 function App() {
-  const [medicinesArray, setMedicinesArray] = useState(DUMMY_MEDICINES);
+  //const [medicinesArray, setMedicinesArray] = useState(MEDICINES);
   const [cartIsShown, setCartIsShown] = useState(false);
 
-  const addMedicineHandler = (medicine) => {
-    setMedicinesArray((prevMedicinesArray) => {
-      return [medicine, ...prevMedicinesArray];
-    });
-  };
+  // const addMedicineHandler = (medicine) => {
+  //   setMedicinesArray((prevMedicinesArray) => {
+  //     return [medicine, ...prevMedicinesArray];
+  //   });
+  // };
 
   const showCartHandler = () => {
     setCartIsShown(true);
@@ -44,10 +45,12 @@ function App() {
 
   return (
     <CartProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
-      <MedicineForm onAddMedicine={addMedicineHandler} />
-      <Medicines medicines={medicinesArray} />
+      <QuantityProvider>
+        {cartIsShown && <Cart onClose={hideCartHandler} />}
+        <Header onShowCart={showCartHandler} />
+        <MedicineForm /> {/* onAddMedicine={addMedicineHandler} */}
+        <Medicines /> {/*medicines={medicinesArray} */}
+      </QuantityProvider>
     </CartProvider>
   );
 }

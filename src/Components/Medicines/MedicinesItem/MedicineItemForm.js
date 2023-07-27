@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import Input from "../../UI/Input";
 import Button from "../../UI/Button/Button";
 import CartContext from "../../../store/cart-context";
+import QuantityContext from "../../../store/quantity-context";
 
 const MedicineItemForm = (props) => {
   const cartCtx = useContext(CartContext);
+  const quantityCtx = useContext(QuantityContext);
 
   const addMedicineToCart = (event) => {
     event.preventDefault();
@@ -16,6 +18,7 @@ const MedicineItemForm = (props) => {
     });
     const cartPrice = props.medicine.price * quantity;
     cartCtx.updateTotalAmount(cartPrice);
+    quantityCtx.removeMedicine({...props.medicine, medicineId: props.medicineId});
   };
   return (
     <form>

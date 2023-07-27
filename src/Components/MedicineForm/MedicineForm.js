@@ -1,9 +1,9 @@
-import React, { useContext , useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../UI/Button/Button";
-//import QuantityContext from "../../store/quantity-context";
+import QuantityContext from "../../store/quantity-context";
 
 const MedicineForm = (props) => {
-  //const quantityCtx = useContext(QuantityContext);
+  const quantityCtx = useContext(QuantityContext);
   const [enteredMedicineName, setEnteredMedicineName] = useState("");
   const [enteredMedicineDescription, setEnteredMedicineDescription] =
     useState("");
@@ -39,8 +39,8 @@ const MedicineForm = (props) => {
       availableQuantity: enteredMedicineAvailableQuantity,
     };
     localStorage.setItem(enteredMedicineName, JSON.stringify(medicineData));
-    props.onAddMedicine(medicineData);
-    //quantityCtx.addMedicine({...medicineData});
+    //props.onAddMedicine(medicineData);
+    quantityCtx.addMedicine(medicineData);
     //console.log(quantityCtx.medicines);
     setEnteredMedicineName("");
     setEnteredMedicineDescription("");
