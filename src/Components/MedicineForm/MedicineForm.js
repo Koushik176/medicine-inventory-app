@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import Button from "../UI/Button/Button";
+import "./MedicineForm.css";
 import QuantityContext from "../../store/quantity-context";
 
 const MedicineForm = (props) => {
@@ -50,37 +50,49 @@ const MedicineForm = (props) => {
   return (
     <div>
       <form onSubmit={formSubmitHandler}>
-        <label htmlFor="medicinename">Medicine Name</label>
-        <input
-          id="medicinename"
-          type="text"
-          value={enteredMedicineName}
-          onChange={medicineNameChangeHandler}
-        ></input>
-        <label htmlFor="description">Description</label>
-        <input
-          id="description"
-          type="text"
-          value={enteredMedicineDescription}
-          onChange={medicineDescriptionChangeHandler}
-        ></input>
-        <label htmlFor="price">Price</label>
-        <input
-          id="price"
-          type="number"
-          min="1"
-          value={enteredMedicinePrice}
-          onChange={medicinePriceChangeHandler}
-        ></input>
-        <label htmlFor="quantityavailable">Quantity Available</label>
-        <input
-          id="quantityavailable"
-          type="number"
-          min="1"
-          value={enteredMedicineAvailableQuantity}
-          onChange={medicineAvailableQuantityChangeHandler}
-        ></input>
-        <Button type="submit">Add Product</Button>
+        <div className="new-medicine__controls">
+          <div className="new-medicine__control">
+            <label htmlFor="medicinename">Medicine Name</label>
+            <input
+              id="medicinename"
+              type="text"
+              value={enteredMedicineName}
+              onChange={medicineNameChangeHandler}
+            ></input>
+          </div>
+          <div className="new-medicine__control">
+            <label htmlFor="description">Description</label>
+            <input
+              id="description"
+              type="text"
+              value={enteredMedicineDescription}
+              onChange={medicineDescriptionChangeHandler}
+            ></input>
+          </div>
+          <div className="new-medicine__control">
+            <label htmlFor="price">Price</label>
+            <input
+              id="price"
+              type="number"
+              min="1"
+              value={enteredMedicinePrice}
+              onChange={medicinePriceChangeHandler}
+            ></input>
+          </div>
+          <div className="new-medicine__control">
+            <label htmlFor="quantityavailable">Quantity Available</label>
+            <input
+              id="quantityavailable"
+              type="number"
+              min="1"
+              value={enteredMedicineAvailableQuantity}
+              onChange={medicineAvailableQuantityChangeHandler}
+            ></input>
+          </div>
+        </div>
+        <div className="new-medicine__actions">
+          <button type="submit">Add Product</button>
+        </div>
       </form>
     </div>
   );

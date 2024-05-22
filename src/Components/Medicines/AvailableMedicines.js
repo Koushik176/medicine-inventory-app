@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import classes from "./AvailableMedicines.module.css";
 import MedicinesItem from "./MedicinesItem/MedicinesItem";
 import QuantityContext from "../../store/quantity-context";
 
@@ -25,7 +26,7 @@ const AvailableMedicines = (props) => {
     />
   ));
   return (
-    <section>
+    <section className={classes.medicines}>
       {/* <ul>{medicinesList}</ul> */}
       <ul>{ContextMedicinesList}</ul>
     </section>
