@@ -48,7 +48,7 @@ const MedicineForm = (props) => {
     setEnteredMedicineAvailableQuantity("");
   };
   return (
-    <div>
+    <div className="form-content">
       <form onSubmit={formSubmitHandler}>
         <div className="new-medicine__controls">
           <div className="new-medicine__control">

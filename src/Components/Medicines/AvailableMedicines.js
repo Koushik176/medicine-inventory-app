@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import classes from "./AvailableMedicines.module.css";
 import MedicinesItem from "./MedicinesItem/MedicinesItem";
+import Card from "../UI/Card";
 import QuantityContext from "../../store/quantity-context";
 
 const AvailableMedicines = (props) => {
@@ -28,7 +29,9 @@ const AvailableMedicines = (props) => {
   return (
     <section className={classes.medicines}>
       {/* <ul>{medicinesList}</ul> */}
-      <ul>{ContextMedicinesList}</ul>
+      <Card>
+        <ul>{ContextMedicinesList}</ul>
+      </Card>
     </section>
   );
 };

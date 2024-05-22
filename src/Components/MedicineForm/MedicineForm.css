@@ -1,5 +1,6 @@
 .new-medicine__controls {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1rem;
@@ -23,6 +24,8 @@
 
 .new-medicine__actions {
   text-align: right;
+  display: flex;
+  justify-content: center;
 }
 
 .new-medicine__actions button {

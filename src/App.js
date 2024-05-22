@@ -48,8 +48,12 @@ function App() {
       <QuantityProvider>
         {cartIsShown && <Cart onClose={hideCartHandler} />}
         <Header onShowCart={showCartHandler} />
-        <MedicineForm /> {/* onAddMedicine={addMedicineHandler} */}
-        <Medicines /> {/*medicines={medicinesArray} */}
+        <div className="content">
+          <MedicineForm /> {/* onAddMedicine={addMedicineHandler} */}
+        </div>
+        <main>
+          <Medicines /> {/*medicines={medicinesArray} */}
+        </main>
       </QuantityProvider>
     </CartProvider>
   );
